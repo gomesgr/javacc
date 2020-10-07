@@ -73,10 +73,7 @@ void start(): {} {
 	<SELECT> (<ID> | <ALL>) (tableField())* <FROM> <ID> (condition())* <SEMICOLON> (start())* <EOF>
 }
 
-void words(): {} {
-	  <AND>
-	| <OR>
-}
+
 
 void symbols(): {} {
 	  <LESSTHAN>
@@ -117,6 +114,10 @@ void betweenRec(): {} {
 
 void likeCond(): {} {
 	<LIKE> (<QUOTE>)? <WILDCARD> (<QUOTE>)?
+}
+
+void conditionalNotIn(): {} {
+	<NOT> | <IN>
 }
 
 void value(): {} {
