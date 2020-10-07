@@ -65,24 +65,31 @@ TOKEN: {
 	| <NUMBER: (["0"-"9"])+>
 }
 
+void symbols(): {} {
+	<LESSTHAN>
+  | <GREATERTHAN>
+  | <EQUAL>
+  | <GREATEREQUAL>
+  | <LESSEQUAL>
+  | <NOTEQUALA>
+  | <NOTEQUALB>
+}
+
+void conditionalNotIn(): {} {
+	<NOT> | <IN>
+}
+
+void value(): {} {
+	(<QUOTE>)? (<NUMBER> | <ID>) (<QUOTE>)?
+}
+
 void tableField(): {} {
 	<COMMA> (<ID> | <ALL>)
 }
 
 void start(): {} {
-	<SELECT> (<ID> | <ALL>) (tableField())* <FROM> <ID> (condition())* <SEMICOLON> (start())* <EOF>
-}
-
-
-
-void symbols(): {} {
-	  <LESSTHAN>
-	| <GREATERTHAN>
-	| <EQUAL>
-	| <GREATEREQUAL>
-	| <LESSEQUAL>
-	| <NOTEQUALA>
-	| <NOTEQUALB>
+	<SELECT> (<ID> | <ALL>) (tableField())* <FROM> <ID> 
+	(condition())* <SEMICOLON> (start())* <EOF>
 }
 
 void condition(): {} {
@@ -116,10 +123,6 @@ void likeCond(): {} {
 	<LIKE> (<QUOTE>)? <WILDCARD> (<QUOTE>)?
 }
 
-void conditionalNotIn(): {} {
-	<NOT> | <IN>
-}
+void notAndInCond(): {} {
 
-void value(): {} {
-	(<QUOTE>)? (<NUMBER> | <ID>) (<QUOTE>)?
 }
