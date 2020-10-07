@@ -12,3 +12,5 @@ bairro = 'dasd';
 SELECT * FROM Products
 WHERE Price BETWEEN 10 AND 20;
 
+SELECT firstName, address FROM Customers
+WHERE City LIKE '%lo';

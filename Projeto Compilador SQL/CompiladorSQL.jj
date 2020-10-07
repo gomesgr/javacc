@@ -93,6 +93,7 @@ void condition(): {} {
 	(
 		  simpleCond() 
 		| betweenCond()
+		| likeCond()
 		
 	)
 }
@@ -114,8 +115,10 @@ void betweenRec(): {} {
 	) 
 }
 
-
+void likeCond(): {} {
+	<LIKE> (<QUOTE>)? <WILDCARD> (<QUOTE>)?
+}
 
 void value(): {} {
-	(<COMMA>)? (<NUMBER> | <ID>) (<COMMA>)?
+	(<QUOTE>)? (<NUMBER> | <ID>) (<QUOTE>)?
 }
