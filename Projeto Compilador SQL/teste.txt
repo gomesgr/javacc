@@ -16,7 +16,7 @@ SELECT firstName, address FROM Customers
 WHERE City LIKE '%lo';
 
 SELECT * FROM Products
-AND CategoryID NOT IN (1,2,3);
+WHERE CategoryID NOT IN (1,2,3);
 
 SELECT * FROM Products
-AND CategoryID IN (1,2,3);
+WHERE CategoryID IN (1,2,3);

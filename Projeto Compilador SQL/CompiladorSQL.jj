@@ -99,6 +99,7 @@ void condition(): {} {
 		  simpleCond() 
 		| betweenCond()
 		| likeCond()
+		| notAndInCond()
 		
 	)
 }
@@ -125,5 +126,10 @@ void likeCond(): {} {
 }
 
 void notAndInCond(): {} {
+	// Usando * pois nao e possivel utilizar {QUANTIDADE} como no regex comum
+	(conditionalNotIn())* <OPENPARENTHESIS> value() tuple() <CLOSEPARENTHESIS>
+}
 
+void tuple(): {} {
+	<COMMA> value() (tuple())* 
 }
