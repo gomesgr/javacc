@@ -91,21 +91,31 @@ void symbols(): {} {
 void condition(): {} {
 	<WHERE> <ID> 
 	(
-		simpleCond() |
-		betweenCond()
+		  simpleCond() 
+		| betweenCond()
+		
 	)
 }
 
 void simpleCond(): {} {
 	symbols() (<QUOTE>)? (<ID> | <NUMBER>) (<QUOTE>)?
-	( (<AND> | <OR>) <ID> simpleCond())*
+	(
+		(<AND> | <OR>) <ID> simpleCond()
+	)*
 }
 
 void betweenCond(): {} {
-	<BETWEEN> <NUMBER> betweenRec()
+	<BETWEEN> value() betweenRec()
 }
 
 void betweenRec(): {} {
-	<AND> <NUMBER> (betweenRec())*
+	(
+		<AND> value() (betweenRec())*
+	) 
 }
 
+
+
+void value(): {} {
+	(<COMMA>)? (<NUMBER> | <ID>) (<COMMA>)?
+}
