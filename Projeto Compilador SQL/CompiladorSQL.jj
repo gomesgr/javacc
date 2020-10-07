@@ -87,6 +87,7 @@ void tableField(): {} {
 	<COMMA> (<ID> | <ALL>)
 }
 
+// Beginning of lexical analysis
 void start(): {} {
 	<SELECT> (<ID> | <ALL>) (tableField())* <FROM> <ID> 
 	(condition())* <SEMICOLON> (start())* <EOF>
