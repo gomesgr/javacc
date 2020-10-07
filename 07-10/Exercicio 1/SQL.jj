@@ -1,0 +1,41 @@
+options {
+	IGNORE_CASE = true;
+}
+PARSER_BEGIN(SQL)
+
+public class SQL {
+	 public static void main(String[] args) {
+ 	        try {
+			SQL parser = new SQL(System.in);
+			parser.start();
+			System.out.println("Compilado com sucesso");
+		} catch(ParseException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+PARSER_END(SQL)
+
+SKIP: {
+	" " | "\n" | "\t" | "\r"
+}
+
+TOKEN: {
+	  <SELECT: "SELECT"> 
+	| <FROM: "FROM">
+	| <ALL: "*">
+	| <COMMA: ",">
+}
+
+TOKEN: {
+	<ID: (["A"-"Z","a"-"z"])+ (["A"-"Z","a"-"z","0"-"9"])*>
+}
+
+void start():  {} {
+	<SELECT> column() <FROM> <ID> <EOF>
+}
+
+void column(): {} {
+	<ALL> | <ID>  (<COMMA> column())*
+}
