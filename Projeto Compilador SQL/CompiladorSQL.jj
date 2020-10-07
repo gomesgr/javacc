@@ -1,0 +1,103 @@
+options {
+	IGNORE_CASE = true;
+	DEBUG_PARSER = true;
+	UNICODE_INPUT = true;
+}
+
+PARSER_BEGIN(CompiladorSQL)
+
+public class CompiladorSQL {
+	public static void main(String[] args) {
+		try {
+			CompiladorSQL parser = new CompiladorSQL(System.in);
+			parser.start();
+		} catch(ParseException e ) {
+			System.err.print("Erro de compilacao\n");
+			e.printStackTrace();
+		}
+	}
+}
+
+PARSER_END(CompiladorSQL)
+
+SKIP : {
+	" " | "\n" | "\t" | "\r"
+}
+
+TOKEN: {
+	  <SELECT: "SELECT"> 
+	| <FROM: "FROM">
+	| <DISTINCT: "DISTINCT">
+	| <WHERE: "WHERE">
+	| <NOT: "NOT">
+	| <AND: "AND">
+	| <OR: "OR">
+	| <ORDER: "ORDER">
+	| <BY: "BY">
+	| <COUNT: "COUNT">
+	| <ASC: "ASC">
+	| <DESC: "DESC">
+	| <LIKE: "LIKE">
+	| <AS: "AS">
+	| <BETWEEN: "BETWEEN">
+	| <IN: "IN">
+}
+
+TOKEN: {
+	  <SEMICOLON: ";">
+	| <COMMA: ",">
+	| <ALL: "*">
+	| <LESSTHAN: "<">
+	| <GREATERTHAN: ">">
+	| <EQUAL: "=">
+	| <GREATEREQUAL: ">=">
+	| <LESSEQUAL: "<=">
+	| <NOTEQUALA: "!=">
+	| <NOTEQUALB: "<>">
+	| <QUOTE: "\'">
+	| <OPENPARENTHESIS: "(">
+	| <CLOSEPARENTHESIS: ")">
+}
+
+TOKEN: {
+	  <ID: (["A"-"Z","a"-"z"])+ (["A"-"Z","a"-"z","0"-"9"])*>
+	| <WILDCARD: (["a"-"z","A"-"Z","%","_"])+>
+	| <NUMBER: (["0"-"9"])+>
+}
+
+void tableField(): {} {
+	<COMMA> (<ID> | <ALL>)
+}
+
+void start(): {} {
+	<SELECT> (<ID> | <ALL>) (tableField())* <FROM> <ID> (condition())* <SEMICOLON> (start())* <EOF>
+}
+
+void words(): {} {
+	  <AND>
+	| <OR>
+}
+
+void symbols(): {} {
+	  <LESSTHAN>
+	| <GREATERTHAN>
+	| <EQUAL>
+	| <GREATEREQUAL>
+	| <LESSEQUAL>
+	| <NOTEQUALA>
+	| <NOTEQUALB>
+}
+
+void condition(): {} {
+	<WHERE> <ID> simpleCond()
+}
+
+void simpleCond(): {} {
+	symbols() (<QUOTE>)? (<ID> | <NUMBER>) (<QUOTE>)?
+	( (<AND> | <OR>) <ID> simpleCond())*
+}
+
+void betweenCond(): {} {
+	<BETWEEN>
+}
+

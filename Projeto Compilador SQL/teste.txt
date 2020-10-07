@@ -1,0 +1,10 @@
+SELECT rua, numero FROM casa;
+
+SELECT * FROM casa;
+
+SELECT * FROM comida
+WHERE macarrao = 'espaguete';
+
+SELECT * FROM casa
+WHERE NUMERO < 23 AND
+bairro = 'dasd';
