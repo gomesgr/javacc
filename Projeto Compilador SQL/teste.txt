@@ -8,3 +8,6 @@ WHERE macarrao = 'espaguete';
 SELECT * FROM casa
 WHERE NUMERO < 23 AND
 bairro = 'dasd';
+
+SELECT * FROM Products
+WHERE Price BETWEEN 10 AND 20 and 30 and 40;

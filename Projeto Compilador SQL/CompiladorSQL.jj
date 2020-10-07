@@ -89,7 +89,11 @@ void symbols(): {} {
 }
 
 void condition(): {} {
-	<WHERE> <ID> simpleCond()
+	<WHERE> <ID> 
+	(
+		simpleCond() |
+		betweenCond()
+	)
 }
 
 void simpleCond(): {} {
@@ -98,6 +102,10 @@ void simpleCond(): {} {
 }
 
 void betweenCond(): {} {
-	<BETWEEN>
+	<BETWEEN> <NUMBER> betweenRec()
+}
+
+void betweenRec(): {} {
+	<AND> <NUMBER> (betweenRec())*
 }
 
