@@ -1,0 +1,39 @@
+PARSER_BEGIN(Math)
+
+public class Math {
+    public static void main(String[] args) {
+        try {
+            Math parser = new Math(System.in);
+            parser.start();    
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+PARSER_END(Math)
+
+SKIP : {
+    " "  | "\t" | "\n" | "\r"
+}
+
+TOKEN : {
+    <NUM: (["0"-"9"])+>   |
+    <MUL: "*">            |
+    <SUM: "+">            |
+    <SUB: "-">            |
+    <DIV: "/">
+}
+
+void start() : {} {
+   <NUM> numeros() <EOF>
+}
+
+void operador() : {} {
+    <MUL> | <SUM> | <SUB> | <DIV>
+}
+
+void numeros() : {} {
+    operador() <NUM> (numeros())*
+}
+

@@ -1,0 +1,31 @@
+// Inicio padrao do javacc gabgab
+PARSER_BEGIN(Ex1)
+
+// declaracao da classe e metodo main
+public class Ex1 {
+	// Manipular excecoes do analisador lexico e sintatico
+	public static void main(String[] args) {		
+        try {
+            Ex1 parser = new Ex1(System.in);
+            parser.Entrada(); // metodo inicial da gramatica
+        } catch(ParseException e) {
+            e.printStackTrace();
+        }
+	}
+}
+// Fim padrao do javacc
+PARSER_END(Ex1)
+
+// Desconsiderando... (lexica)
+SKIP : {
+	"\t" | " " | "\n" | "\r"
+}
+
+// regra da gramatica 
+void Entrada() : {} {
+	CombinaChaves() <EOF>
+}
+
+void CombinaChaves() : {} {
+  "{" [ CombinaChaves() ] "}" //uso de recursividade para concatenar n chaves
+}
