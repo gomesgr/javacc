@@ -1,0 +1,44 @@
+// Início padrão do JavaCC
+
+PARSER_BEGIN(Chaves)
+
+// Declaração da classe e método main
+
+public class Chaves
+{
+	public static void main(String args[]) throws ParseException  // permite manipular as exceções do analisador léxico e sintático
+	{
+		Chaves parser = new Chaves(System.in);
+
+		parser.Entrada();	// método inicial da minha gramática
+	}	
+}
+
+// Fim padrão do JavaCC
+
+PARSER_END(Chaves)
+
+// Dicionário -> parte léxica
+
+SKIP : 
+{
+	" " | 
+	"\t" | 
+	"\n" | 
+	"\r"
+}
+
+TOKEN : 
+{
+	// Chaves esquerda e direita
+	
+	<CHESQ: "{"> |
+	<CHDIR: "}">
+}
+
+// Regra principal da gramática
+
+void Entrada() : {}
+{
+	<CHESQ> <CHDIR> <EOF>
+}
