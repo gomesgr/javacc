@@ -1,0 +1,5 @@
+SELECT * FROM Customers
+WHERE Country='Brazil' AND math between 1 and 2;
+
+SELECT * FROM Customers
+WHERE Country='Brazil' AND City LIKE 'C%';

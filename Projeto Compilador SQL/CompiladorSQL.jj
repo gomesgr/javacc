@@ -89,8 +89,20 @@ void tableField(): {} {
 
 // Beginning of lexical analysis
 void start(): {} {
-	<SELECT> (<ID> | <ALL>) (tableField())* <FROM> <ID> 
-	(condition())* <SEMICOLON> (start())* <EOF>
+	select() <EOF>
+}
+
+void select(): {} {
+	(<SELECT> (<ID> | <ALL> | (specialWords() onParenthesis() (<AS> <ID>)?)) (tableField())*)
+	 <FROM> ( (<ID> (condition())* (<CLOSEPARENTHESIS>)? <SEMICOLON> (select())*) | <OPENPARENTHESIS> select() )
+}
+
+void specialWords(): {} {
+	(<COUNT> | <DISTINCT>)
+}
+
+void onParenthesis(): {} {
+	<OPENPARENTHESIS> (specialWords())* (<ID> | <ALL>) <CLOSEPARENTHESIS>
 }
 
 void condition(): {} {
@@ -99,15 +111,14 @@ void condition(): {} {
 		  simpleCond() 
 		| betweenCond()
 		| likeCond()
-		| notAndInCond()
-		
+		| notAndInCond()	
 	)
 }
 
 void simpleCond(): {} {
 	symbols() value()
 	(
-		(<AND> | <OR>) <ID> simpleCond()
+		(<AND> | <OR>) <ID> (simpleCond() | betweenCond() | likeCond() | notAndInCond())
 	)*
 }
 

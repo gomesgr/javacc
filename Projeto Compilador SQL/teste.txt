@@ -20,3 +20,17 @@ WHERE CategoryID NOT IN (1,2,3);
 
 SELECT * FROM Products
 WHERE CategoryID IN (1,2,3);
+
+SELECT COUNT(DISTINCT Country) FROM Customers;
+
+SELECT Count(*) AS DistinctCountries
+FROM (SELECT DISTINCT (Country) FROM Customers);
+
+SELECT * FROM Customers
+WHERE Country='Brazil' AND City LIKE 'C%';
+
+SELECT * FROM Customers
+WHERE Country='Brazil' AND qqrcoisa between 1 and 2;
+
+SELECT * FROM Customers
+WHERE Country='Brazil' AND City LIKE 'C%';
