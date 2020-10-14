@@ -24,7 +24,7 @@ WHERE CategoryID IN (1,2,3);
 SELECT COUNT(DISTINCT Country) FROM Customers;
 
 SELECT Count(*) AS DistinctCountries
-FROM (SELECT DISTINCT (Country) FROM Customers);
+FROM (SELECT DISTINCT Country FROM Customers);
 
 SELECT * FROM Customers
 WHERE Country='Brazil' AND City LIKE 'C%';

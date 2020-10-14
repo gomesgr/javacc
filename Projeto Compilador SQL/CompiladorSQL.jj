@@ -102,7 +102,7 @@ void specialWords(): {} {
 }
 
 void onParenthesis(): {} {
-	<OPENPARENTHESIS> (specialWords())* (<ID> | <ALL>) <CLOSEPARENTHESIS>
+	(<OPENPARENTHESIS>)? (specialWords())* (<ID> | <ALL>) (<CLOSEPARENTHESIS>)?
 }
 
 void condition(): {} {
