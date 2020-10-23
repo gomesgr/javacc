@@ -1,0 +1,30 @@
+options {
+	IGNORE_CASE = true;
+	DEBUG_PARSER = true;
+}
+PARSER_BEGIN(Look)
+
+public class Look {
+	public static void main(String[] args)throws ParseException {
+    try {
+      Look parser = new Look(System.in);
+      parser.start();
+    } catch(ParseException e ) {
+      System.err.print("Erro de compilacao");
+      e.printStackTrace();
+    }
+	}
+}
+PARSER_END(Look)
+
+SKIP: {
+  " " | "\n" | "\t" | "\r"
+}
+
+TOKEN: {
+  <ID: (["a"-"z","A"-"Z"])+ (["a"-"z","A"-"Z","0"-"9"])*>
+}
+
+void start(): {} {
+  <ID> ("," <ID>)* <EOF>
+}

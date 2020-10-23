@@ -1,0 +1,34 @@
+options {
+	IGNORE_CASE = true;
+	DEBUG_PARSER = true;
+}
+
+PARSER_BEGIN(Cod)
+
+public class Cod {
+  static int idcount = 0;
+	public static void main(String args[]) throws ParseException { // permite manipular as exceções do analisador léxico e sintático
+		Cod parser = new Cod(System.in);
+		parser.entrada();
+	}	
+}
+
+PARSER_END(Cod)
+
+SKIP: {
+	" "  | "\t" | "\n" | "\r"
+}
+
+TOKEN: {
+    <ID: ["a","b","c"]>
+}
+
+void entrada() : {} {
+	<ID> {Cod.idcount += 1;}  bc() <ID> {Cod.idcount += 1;}
+  {System.out.printf("ID foi chamado %d vezes \n", Cod.idcount);}
+}
+// \* para Regex
+void bc() : {} {
+  LOOKAHEAD(2)
+  "9" | ("9" ("z")*)
+}

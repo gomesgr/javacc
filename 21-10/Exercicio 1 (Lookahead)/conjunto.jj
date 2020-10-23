@@ -1,0 +1,29 @@
+options {
+	IGNORE_CASE = true;
+	DEBUG_PARSER = true;
+	UNICODE_INPUT = true;
+}
+
+PARSER_BEGIN(Look)
+
+public class Look {
+	public static void main(String args[]) throws ParseException { // permite manipular as exceções do analisador léxico e sintático
+		Look parser = new Look(System.in);
+		parser.entrada();
+	}	
+}
+
+PARSER_END(Look)
+
+SKIP : {
+	" "  | "\t" | "\n" | "\r"
+}
+
+void entrada() : {} {
+	"a" bc() "c"
+}
+// \* para Regex
+void bc() : {} {
+    LOOKAHEAD(2)
+	"b" | "b" ("c")*
+}
