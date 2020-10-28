@@ -1,0 +1,39 @@
+PARSER_BEGIN(Calculo)
+
+public class Calculo {
+    public static void main(String[] args) {
+        try {
+            Calculo parser = new Calculo(System.in);
+            parser.entrada();
+            System.out.println("Sucesso");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+PARSER_END(Calculo)
+
+SKIP: {
+    " " | "\n" | "\t" | "\r"
+}
+
+TOKEN: {
+    <SOMA: "+"> | <SUB: "-"> | <MULT: "*"> | <DIV: "/">
+}
+
+TOKEN: {
+    <INTEIRO: (["0"-"9"])+>
+}
+
+void entrada():{} {
+    <INTEIRO> calculo() <EOF>
+}
+
+void calculo():{} {
+    operacao() <INTEIRO> (calculo())*
+}
+
+void operacao():{} {
+    <SOMA> | <SUB> | <MULT> | <DIV>
+}
