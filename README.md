@@ -4,13 +4,13 @@
 ## JFlex
 
 ### Conceito básico:
-	
+
 JFlex é um analisador léxico para Java, um leitor que implementa um autômato finito, capaz de reconhecer 
 caracteres de uma determinada linguagem. Por ser uma aplicação Java, JFlex necessita de uma máquina virtual Java.
 É distribuído pela GPL e está disponível em: http://jflex.de/download.html 
 
 ### Pré-requisitos:
-		
+
 Tenha o Java instalado e a versão do JDK atualizada. Então verifique no Windows/Linux, as versões pelo terminal:
 
 `java -version`
@@ -22,46 +22,43 @@ Se estiver tudo certo, execute o comando:
 ### Instalação:
 
 #### Windows
-- Faça o download: http://jflex.de/download.html
-- O arquivo vai estar com o nome jflex e sua versão. Por exemplo: jflex-1.8.2
-- Descompacte o arquivo em uma pasta vazia de preferência no disco local C:\
+- Faça o download: [Aqui](http://jflex.de/download.html)
+- O arquivo estará com o nome jflex e sua versão. Por exemplo: jflex-1.8.2
+- Descompacte o arquivo em uma pasta vazia de preferência no disco local *C:\\*
 - Dentro da pasta jflex-1.8.2 tem um arquivo com o nome bin, clique na pasta. E, abra o arquivo jflex.bat
 - Você verá o seguinte código:
 	
-  `if not JFLEX_HOME set JFLEX_HOME=C:\jflex-1.8.2\`
+  `if not JFLEX_HOME set JFLEX_HOME=C:\JFLEX`
 
-- Basicamente o JFLEX_HOME está setado com o caminho C:\jflex-1.8.2\
+- Basicamente o JFLEX_HOME está setado com o caminho *C:\JFLEX*
 - Se o caminho estiver correto, não precisa modificar
-- Se preferir, renomeie a pasta jflex-1.8.2 para jflex e também o JFLEX_HOME. No nosso caso, deixaremos com a versão
-- Inclua aquele caminho junto com o \bin  na variável path. Por exemplo: C:\jflex-1.8.2\bin
+- Se preferir, renomeie a pasta jflex-1.8.2 para jflex e também o **JFLEX_HOME**. No nosso caso, deixaremos com a versão
+- Inclua aquele caminho junto com o *\\bin*  na variável path. Por exemplo: *C:\jflex-1.8.2\bin*
 - Por fim abra o terminal e verifique a instação digitando: jflex
 - Aparecerá a interface do Jflex		
 	
-#### Linux
-- Faça as atualizações necessários da sua distro, usando o comando como administrador: `sudo apt update`
-- Em seguida instale usando o comando: `sudo apt install jflex`
-- Descompacte o arquivo em uma pasta vazia de preferência no local /usr
-- Dentro da pasta jflex-1.8.2 tem um arquivo com o nome bin, clique na pasta. E, abra o arquivo jflex.bat 
-- Você verá o seguinte código:
-	
-   `if not JFLEX_HOME set JFLEX_HOME= .\usr\jflex-1.8.2\`
+#### Linux (Distribuições baseadas em Ubuntu)
 
-   Edite o caminho do arquivo de acordo com o local onde se encontra. Se estiver correto, não modifiquei:
-				
-  `if not JFLEX_HOME set JFLEX_HOME= .\usr\jflex-1.8.2`
-  
-- Basicamente o JFLEX_HOME está setado com o caminho C:\jflex-1.8.2\	
-- Esse caminho precisa estar de acordo com a pasta jflex e o seu diretório
-- Por fim abra o terminal e verifique a instação digitando: jflex
-- Aparecerá a interface do Jflex
+* Faça o download: [Aqui](http://jflex.de/download.html)
+* Abra seu terminal;
+
+- Descompacte o arquivo em uma pasta vazia de preferência no seu diretório */home/usuário/*;
+- O til "~" é um símbolo que representa este diretório: */home/usuário*, utilizaremos ele a partir de agora;
+- Criaremos no diretório "~" uma pasta chamada **JFLEX** e extrairemos em seguida o conteúdo do arquivo compactado;
+- `mkdir ~/JFLEX`
+- `sudo tar -xvf jflex-versao.tar.gz -C ~/JFLEX`
+- Utilizando seu editor de texto de preferência, digite o seguinte comando, no meu caso, estarei utilizando vim: 
+- `vim ~/.bashrc`
+- Com o arquivo aberto, adicione na ultima linha o seguinte, utilizando o caminho onde você extraiu os arquivos do **JFLEX**, no meu caso, utilizei o diretório *~/JFLEX*;
+- `export PATH="~/JFLEX/jflex-1.8.2/bin/:$PATH"`
+- ![Arquivo .bashrc](https://i.imgur.com/gNg6cu3.png)
+- Por fim, reinicie seu terminal e digite o comando `jflex`.
 
 ## JavaCC
 
 ### Conceito básico:
 
-É uma ferramenta que gera analisadores sintáticos para a linguagem Java. Utiliza muitas característca da linguagem Java o que trás
-maior facilidade ao construir um analisador sintático. Por utilizar Orientação Objeto e tratamento de exceções, torna o gerenciamento de erros sintáticos
-mais fácil para implementação e leitura.
+É uma ferramenta que gera analisadores sintáticos para a linguagem Java. Utiliza muitas característica da linguagem Java, o que trás maior facilidade ao construir um analisador sintático. Por utilizar orientação a objetos e tratamento de exceções, torna o gerenciamento de erros sintáticos mais fácil para  implementação e leitura.
 	
 ### Pré-requisitos:
 
@@ -73,11 +70,12 @@ Se estiver tudo certo, execute o comando:
 
 `javac -version`
 	
+
 ### Instalação:
-		
+
 #### Windows
-		
-- O site para baixar o JavaCC, é: https://javacc.github.io/javacc/
+
+- Faça o download: [Aqui](https://javacc.github.io/javacc/)
 - Após baixar, de preferência deixe no disco local C:\
 - Crie uma pasta chamada target
 - Acesse o link para baixar o arquivo binário: https://repo1.maven.org/maven2/net/java/dev/javacc/javacc/7.0.9/javacc-7.0.9.jar
@@ -92,20 +90,20 @@ Se estiver tudo certo, execute o comando:
 	
 #### Linux
 
-- O site para baixar o JavaCC, é: https://javacc.github.io/javacc/
-- Após baixar, de preferência deixe para o diretório /usr
-- Crie uma pasta chamada target
-- Acesse o link para baixar o arquivo binário: https://repo1.maven.org/maven2/net/java/dev/javacc/javacc/7.0.9/javacc-7.0.9.jar
-- Cole dentro da pasta target e renomeio o javacc-7.0.9.jar e renomeie para javacc.jar	
-- Volte um diretório onde tem uma pasta chamada scripts e entre na pasta
-- Bom, abra uma nova aba pastas e acesse a Pasta pessoal e procure por .bashrc e abra em um edtor.
-- Adicione na última linha:
-  `export PATH="/usr/seunome/javacc-7.0.9/scripts:$PATH"`
-- Digite no terminal:	
-
-  `javacc` 
-  
-- Vai aparecer uma mensagem informando que classe principal não foi localizada, o que indica que o javaCC já está instalado
+- Faça o download: [Aqui](https://javacc.github.io/javacc/), utilize o arquivo no formato *.tar.gz*
+- Abra seu terminal;
+- Descompacte o arquivo em uma pasta vazia de preferência no seu diretório */home/usuário/*;
+- Criaremos no diretório "~" uma pasta chamada **JAVACC** e extrairemos em seguida o conteúdo do arquivo compactado;
+- `mkdir ~/JAVACC`
+- `tar -xvf javacc-javacc-versao.tar.gz -C ~/JAVACC`
+- Vá para o diretório onde foram extraídos estes arquivos e renomeie o diretório "bootstrap" para "target", da seguinte forma:
+- `mv bootstrap/ target/`
+- Utilizando seu editor de texto de preferência, digite o seguinte comando, no meu caso, estarei utilizando vim: 
+- `vim ~/.bashrc`
+- Com o arquivo aberto, adicione na ultima linha o seguinte, utilizando o caminho onde você extraiu os arquivos do **JAVACC**, no meu caso, utilizei o diretório *~/JAVACC*;
+  `export PATH="~/JAVACC/javacc-javacc-versao/scripts/:$PATH"`
+- ![Arquivo .bashrc](https://i.imgur.com/qMBgzaf.png)
+- Por fim, reinicie seu terminal e digite o comando `javacc`.
 
 
 
